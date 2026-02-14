@@ -30,12 +30,19 @@ find_package(OpenGL REQUIRED)
 # Silence macOS OpenGL deprecation warnings
 add_definitions(-DGL_SILENCE_DEPRECATION)
 
-add_executable(SceneEditor src/main.cpp ${IMGUI_SOURCES})
+set(ECS_DIR src/ECS)
+set(ECS_SOURCES
+        ${ECS_DIR}/TransformComponent.cpp
+        ${ECS_DIR}/CameraComponent.cpp
+)
+
+add_executable(SceneEditor src/main.cpp ${ECS_SOURCES} ${IMGUI_SOURCES})
 
 # Include paths
 target_include_directories(SceneEditor PRIVATE
         ${IMGUI_DIR}
         ${IMGUI_DIR}/backends
+        src
 )
 
 # Link libraries
