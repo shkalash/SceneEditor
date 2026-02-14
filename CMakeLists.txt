@@ -27,6 +27,9 @@ set(IMGUI_SOURCES
 # OpenGL - required for MacOS
 find_package(OpenGL REQUIRED)
 
+# Silence macOS OpenGL deprecation warnings
+add_definitions(-DGL_SILENCE_DEPRECATION)
+
 add_executable(SceneEditor src/main.cpp ${IMGUI_SOURCES})
 
 # Include paths
