@@ -47,3 +47,16 @@ target_include_directories(SceneEditor PRIVATE
 
 # Link libraries
 target_link_libraries(SceneEditor PRIVATE glfw glm OpenGL::GL)
+
+# Testing
+set(TEST_DIR tests)
+set(TEST_SOURCES
+        ${TEST_DIR}/test_ecs.cpp
+        ${TEST_DIR}/test_transforms.cpp
+)
+
+
+add_subdirectory(extern/Catch2)
+add_executable(SceneEditorTests ${TEST_SOURCES} ${ECS_SOURCES})
+target_link_libraries(SceneEditorTests PRIVATE Catch2::Catch2WithMain glm)
+target_include_directories(SceneEditorTests PRIVATE src)
